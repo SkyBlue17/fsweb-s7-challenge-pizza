@@ -1,0 +1,39 @@
+header {
+    background-color: #CE2829;
+    min-width: 100%;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    font-size: 300%;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav li {
+
+    list-style-type: none;
+}
+
+nav li a {
+    text-decoration-line: none;
+    color: white;
+    margin-right: 10px;
+
+}

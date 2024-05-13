@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import "./PizzaOrderForm.css"
 
 const fakeAdditivesList = [
     { id: 1, name: "Peynir" },
@@ -68,8 +68,10 @@ export default function PizzaOrderForm() {
        
 
     }
-    return (<form>
-        <div>
+    return (<form >
+        <section class="main-form-component">
+            <section class="dough-size">
+        <div class="container-1">
             <h2>Boyut Seçin</h2>
             <label>Küçük
                 <input
@@ -94,7 +96,7 @@ export default function PizzaOrderForm() {
                 />
             </label>
         </div>
-        <div>
+        <div class="container-1">
             <h2>Hamur Seç</h2>
             <select value={doughThickness} onChange={handleDoughThicknessChange}>
                 <option value="">Hamur Kalınlığı</option>
@@ -102,8 +104,8 @@ export default function PizzaOrderForm() {
                 <option value="normal">Normal</option>
                 <option value="kalın">Kalın</option>
             </select>
-        </div>
-        <div>
+        </div></section>
+        <div class="container">
             <h2>Ek Malzemeler</h2>
             <p>En Fazla 10 malzeme seçebilirsiniz.5$</p>
             {fakeAdditivesList.map(item => (<label key={item.id}>
@@ -116,11 +118,11 @@ export default function PizzaOrderForm() {
             </label>))}
 
         </div>
-        <div>
+        <div class="container">
             <h2>Sipariş Notu</h2>
             <textarea value={orderNotes} onChange={handleOrderNotesChange} />
         </div>
-        <div>
+        <div class="container">
             <div >
                 <button type="button" onClick={()=>handleQuantityChange(-1)}>-</button>
                 <input type="number"
@@ -132,15 +134,15 @@ export default function PizzaOrderForm() {
                 <button type="button" onClick={()=>handleQuantityChange(+1)}>+</button>
             </div>
         </div>
-        <div>
+        <div class="container">
             <h3>Siparişler Toplamı</h3>
             <h4>Seçimler: </h4>
             <h4>{calculateTotalPrice("additives")}</h4>
             <h4 >Toplam : </h4>
             <h4>{calculateTotalPrice()}</h4>
         </div>
-        <div>
+        <div class="container">
             <button type="submit">Sipariş Ver</button>
-        </div>
+        </div></section>
     </form>)
 }
