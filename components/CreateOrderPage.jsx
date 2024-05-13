@@ -3,11 +3,14 @@ import PizzaOrderForm from './PizzaOrderForm.jsx'
 
 
 
-export default function CreateOrderPage(){
-    return(
+
+
+
+export default function CreateOrderPage() {
+    return (
         <><header><Header /></header>
-        <div><PizzaOrderForm /></div>
+            <div ><PizzaOrderForm /></div>
         </>
-        
+
     )
 }

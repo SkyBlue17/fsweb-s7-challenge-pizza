@@ -65,9 +65,7 @@ export default function PizzaOrderForm() {
         }else{
             return totalPrice * quantity;
         }
-        const handleSubmit= (event)=>{
-            event.preventDefault();
-        };
+       
 
     }
     return (<form>
@@ -123,18 +121,18 @@ export default function PizzaOrderForm() {
             <textarea value={orderNotes} onChange={handleOrderNotesChange} />
         </div>
         <div>
-            <div style={{ display: "flex", alignItems: "center" }}>
-                <button onClick={()=>handleQuantityChange(-1)}>-</button>
+            <div >
+                <button type="button" onClick={()=>handleQuantityChange(-1)}>-</button>
                 <input type="number"
                     min="1"
                     value={quantity}
                     onChange={(e)=> setQuantity(parseInt(e.target.value))}
                 
                 />
-                <button onClick={()=>handleQuantityChange(1)}>+</button>
+                <button type="button" onClick={()=>handleQuantityChange(+1)}>+</button>
             </div>
         </div>
-        <div style={{display:"flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"flex-end"}}>
+        <div>
             <h3>Siparişler Toplamı</h3>
             <h4>Seçimler: </h4>
             <h4>{calculateTotalPrice("additives")}</h4>
