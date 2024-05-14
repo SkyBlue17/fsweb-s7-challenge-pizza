@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./PizzaOrderForm.css"
+import axios from "axios";
 
 const fakeAdditivesList = [
     { id: 1, name: "Peynir" },
@@ -49,6 +50,7 @@ export default function PizzaOrderForm() {
     }
     const handleQuantityChange = (value)=>{
         setQuantity(prevQuantity => Math.max(1,prevQuantity + value))
+        
     };
     const calculateTotalPrice = (selection)=>{
         let basePrice = 90;
@@ -68,7 +70,35 @@ export default function PizzaOrderForm() {
        
 
     }
-    return (<form >
+    const handleSubmit=(event)=>{
+        event.preventDefault();
+        axios({
+            method:'post',
+            url:'https://reqres.in/api/pizza',
+            data:{
+                doughThickness,
+                size,
+                additives,
+                orderNotes,
+                quantity,
+                totalPrice: calculateTotalPrice()
+            }  
+        })
+        .then(function(response){
+            console.log(response);
+        })
+        .catch(function (error){
+            console.error(error)
+        })
+        
+    }
+    return (
+    <form >
+        <section class="text-area">
+            <div>
+                <h2></h2>
+            </div>
+        </section>
         <section class="main-form-component">
             <section class="dough-size">
         <div class="container-1">
@@ -142,7 +172,7 @@ export default function PizzaOrderForm() {
             <h4>{calculateTotalPrice()}</h4>
         </div>
         <div class="container">
-            <button type="submit">Sipariş Ver</button>
+            <button type="submit" onClick={handleSubmit}>Sipariş Ver</button>
         </div></section>
     </form>)
 }
