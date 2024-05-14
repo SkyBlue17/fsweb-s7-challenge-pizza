@@ -24,8 +24,8 @@ export default function PizzaOrderForm() {
     const [doughThickness, setDoughThickness] = useState("");
     const [size, setSize] = useState("");
     const [additives, setAdditives] = useState([]);
-    const [orderNotes,setOrderNotes]=useState("");
-    const [quantity ,setQuantity]=useState(1);
+    const [orderNotes, setOrderNotes] = useState("");
+    const [quantity, setQuantity] = useState(1);
 
     const handleDoughThicknessChange = (event) => {
         setDoughThickness(event.target.value);
@@ -45,134 +45,160 @@ export default function PizzaOrderForm() {
             setAdditives(additives.filter(additives => additives !== value));//!!!!!
         }
     };
-    const handleOrderNotesChange=(event)=>{
+    const handleOrderNotesChange = (event) => {
         setOrderNotes(event.target.value);
     }
-    const handleQuantityChange = (value)=>{
-        setQuantity(prevQuantity => Math.max(1,prevQuantity + value))
-        
+    const handleQuantityChange = (value) => {
+        setQuantity(prevQuantity => Math.max(1, prevQuantity + value))
+
     };
-    const calculateTotalPrice = (selection)=>{
+    const calculateTotalPrice = (selection) => {
         let basePrice = 90;
         if (size === "orta") {
             basePrice += 10;
-        }else if (size === "büyük") {
+        } else if (size === "büyük") {
             basePrice += 15;
         }
-        const additivesPrice=5;
+        const additivesPrice = 5;
         const totalAdditivesPrice = additives.length * additivesPrice;
         const totalPrice = totalAdditivesPrice + basePrice;
-        if (selection==="additives") {
+        if (selection === "additives") {
             return totalAdditivesPrice;
-        }else{
+        } else {
             return totalPrice * quantity;
         }
-       
+
 
     }
-    const handleSubmit=(event)=>{
+    const handleSubmit = (event) => {
         event.preventDefault();
         axios({
-            method:'post',
-            url:'https://reqres.in/api/pizza',
-            data:{
+            method: 'post',
+            url: 'https://reqres.in/api/pizza',
+            data: {
                 doughThickness,
                 size,
                 additives,
                 orderNotes,
                 quantity,
                 totalPrice: calculateTotalPrice()
-            }  
+            }
         })
-        .then(function(response){
-            console.log(response);
-        })
-        .catch(function (error){
-            console.error(error)
-        })
-        
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.error(error)
+            })
+
     }
     return (
-    <form >
-        <section class="text-area">
-            <div>
-                <h2></h2>
-            </div>
-        </section>
-        <section class="main-form-component">
-            <section class="dough-size">
-        <div class="container-1">
-            <h2>Boyut Seçin</h2>
-            <label>Küçük
-                <input
-                    type="checkbox"
-                    value="küçük"
-                    checked={size === "küçük"}
-                    onChange={handleSizeChange}
-                />
-            </label>
-            <label>Orta <input
-                type="checkbox"
-                value="orta"
-                checked={size === "orta"}
-                onChange={handleSizeChange} /></label>
-            <label>
-                Büyük
-                <input
-                    type="checkbox"
-                    value="büyük"
-                    checked={size === "büyük"}
-                    onChange={handleSizeChange}
-                />
-            </label>
-        </div>
-        <div class="container-1">
-            <h2>Hamur Seç</h2>
-            <select value={doughThickness} onChange={handleDoughThicknessChange}>
-                <option value="">Hamur Kalınlığı</option>
-                <option value="ince">İnce</option>
-                <option value="normal">Normal</option>
-                <option value="kalın">Kalın</option>
-            </select>
-        </div></section>
-        <div class="container">
-            <h2>Ek Malzemeler</h2>
-            <p>En Fazla 10 malzeme seçebilirsiniz.5$</p>
-            {fakeAdditivesList.map(item => (<label key={item.id}>
-                {item.name}
-                <input type="checkbox"
-                    value={item.name.toLocaleLowerCase()}
-                    checked={additives.includes(item.name.toLocaleLowerCase())}
-                    onChange={handleAdditivesChange} 
-                    />
-            </label>))}
+        <form >
+            <section class="main-form-component">
+                <section class="text-area">
+                    <div>
+                        <h2>Position Absolute Acı Pizza</h2>
+                        <h2>{calculateTotalPrice() + " TL"}</h2>
+                        <p>Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre.
+                            Pizza,domates,peynir ve genellikle .eşitli diğer malzemelerle kaplanmış , daha sonra geleneksel
+                            olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak,düzleştirilmiş
+                            mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. Küçük bir pizzaya bazen pizetta denir.
+                        </p>
+                    </div>
+                </section>
+                <section class="dough-size">
+                    <div class="container-1">
+                        <h2>Boyut Seçin</h2><div>
+                            <input
+                                type="radio"
+                                value="küçük"
+                                checked={size === "küçük"}
+                                onChange={handleSizeChange}
+                                id="size1"
+                                class="size"
+                            />
+                            <label htmlFor="size1">Küçük</label></div>
+                        <div>
+                            <input
+                                type="radio"
+                                value="orta"
+                                checked={size === "orta"}
+                                onChange={handleSizeChange}
+                                id="size2"
+                                class="size" />
+                            <label htmlFor="size2">Orta</label>
+                        </div>
+                        <div>
+                            <input
+                                type="radio"
+                                value="büyük"
+                                checked={size === "büyük"}
+                                onChange={handleSizeChange}
+                                id="size3"
+                                class="size"
+                            />
+                            <label htmlFor="size3">
+                                Büyük
+                            </label></div>
+                    </div>
+                    <div class="container-1">
+                        <h2>Hamur Seç</h2>
+                        <select value={doughThickness} onChange={handleDoughThicknessChange}>
+                            <option value="">Hamur Kalınlığı</option>
+                            <option value="ince">İnce</option>
+                            <option value="normal">Normal</option>
+                            <option value="kalın">Kalın</option>
+                        </select>
+                    </div></section>
+                <section class="additives-area">
+                    <h2>Ek Malzemeler</h2>
+                    <p>En fazla 10 malzeme seçebilirsiniz. 5$</p>
+                    <div class="container-2">
+                        <div class="additives-columns">
+                            {fakeAdditivesList.map(item => (
+                                <div key={item.id} class="additive-item">
+                                    <label class="checkbox-container">
+                                        <input
+                                            type="checkbox"
+                                            value={item.name.toLocaleLowerCase()}
+                                            checked={additives.includes(item.name.toLocaleLowerCase())}
+                                            onChange={handleAdditivesChange}
+                                            class="checkbox"
+                                        />
+                                        <span>{item.name}</span>
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-        </div>
-        <div class="container">
-            <h2>Sipariş Notu</h2>
-            <textarea value={orderNotes} onChange={handleOrderNotesChange} />
-        </div>
-        <div class="container">
-            <div >
-                <button type="button" onClick={()=>handleQuantityChange(-1)}>-</button>
-                <input type="number"
-                    min="1"
-                    value={quantity}
-                    onChange={(e)=> setQuantity(parseInt(e.target.value))}
-                
-                />
-                <button type="button" onClick={()=>handleQuantityChange(+1)}>+</button>
-            </div>
-        </div>
-        <div class="container">
-            <h3>Siparişler Toplamı</h3>
-            <h4>Seçimler: </h4>
-            <h4>{calculateTotalPrice("additives")}</h4>
-            <h4 >Toplam : </h4>
-            <h4>{calculateTotalPrice()}</h4>
-        </div>
-        <div class="container">
-            <button type="submit" onClick={handleSubmit}>Sipariş Ver</button>
-        </div></section>
-    </form>)
+                <div class="order-note-container">
+                    <h2>Sipariş Notu</h2>
+                    <textarea value={orderNotes} onChange={handleOrderNotesChange}/>
+                </div>
+                <br /><br /><hr /><br /><br />
+                <div>
+                    <div >
+                        <button type="button" onClick={() => handleQuantityChange(-1)}>-</button>
+                        <input type="number"
+                            min="1"
+                            value={quantity}
+                            onChange={(e) => setQuantity(parseInt(e.target.value))}
+
+                        />
+                        <button type="button" onClick={() => handleQuantityChange(+1)}>+</button>
+                    </div>
+                </div>
+                <div class="container">
+                    <h3>Siparişler Toplamı</h3>
+                    <h4>Seçimler: </h4>
+                    <h4>{calculateTotalPrice("additives") + " TL"}</h4>
+                    <h4 >Toplam : </h4>
+                    <h4>{calculateTotalPrice() + " TL"}</h4>
+                </div>
+                <div class="container">
+                    <button type="submit" onClick={handleSubmit}>Sipariş Ver</button>
+                </div></section>
+        </form>)
 }
