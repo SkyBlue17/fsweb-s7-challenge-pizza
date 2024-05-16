@@ -3,9 +3,11 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    width: 30%;
+    width: 35%;
     margin-top: 2rem;
-
+    font-family: "Barlow", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .text-area h2 {
@@ -24,7 +26,8 @@
     margin-top: 2rem;
 
 }
-.size{
+
+.size {
     border-radius: 10%;
 }
 
@@ -59,8 +62,10 @@
 
 textarea {
     width: 100%;
-    box-sizing: border-box;
     padding: 20px;
+    border-radius: 20px 20px 20px 20px / 10px 10px 10px 10px;
+    margin-top: 20px;
+
 }
 
 .additives-area h2 {
@@ -70,4 +75,100 @@ textarea {
 
 .additives-area p {
     margin-bottom: 2rem;
+}
+
+.order-note-container {
+    margin-top: 5rem
+}
+
+.quantity-selector {
+    display: flex;
+    flex-direction: row;
+
+
+}
+
+.quantity-selector-button {
+    width: 2em;
+    height: 3rem;
+    font-size: 20px;
+    background-color: #FDC913;
+    border-radius: 10%;
+    border-color: #FDC913;
+}
+
+.quantity-selector input {
+    width: 2em;
+    text-align: center;
+    font-size: 1em;
+}
+
+.quantity-sum-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20rem;
+}
+
+.order-price-card {
+    border: 1px solid #ccc;
+    border-radius: 20px 20px 20px 20px / 10px 10px 10px 10px;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    margin-top: 20px;
+    width: 100%;
+    margin-left: 2rem;
+    height: 10rem;
+    font-size: 17px;
+
+}
+
+#row-sum-card {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 5px;
+
+
+}
+
+.full-width-button {
+    width: 100%;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000000;
+    background-color: #FDC913;
+    padding: 10px 30px;
+    border: solid #FDC913 2px;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition: 1000ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+
+
+}
+
+.full-width-button:hover {
+
+    transition: 1000ms;
+    padding: 10px 50px;
+    transform: translateY(-0px);
+    background-color: #fff;
+    color: #FDC913;
+    border: solid 2px #FDC913;
 }

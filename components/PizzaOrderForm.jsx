@@ -175,30 +175,41 @@ export default function PizzaOrderForm() {
 
                 <div class="order-note-container">
                     <h2>Sipariş Notu</h2>
-                    <textarea value={orderNotes} onChange={handleOrderNotesChange}/>
+                    <textarea  value={orderNotes} onChange={handleOrderNotesChange} />
                 </div>
                 <br /><br /><hr /><br /><br />
-                <div>
-                    <div >
-                        <button type="button" onClick={() => handleQuantityChange(-1)}>-</button>
-                        <input type="number"
-                            min="1"
-                            value={quantity}
-                            onChange={(e) => setQuantity(parseInt(e.target.value))}
+                <section class="quantity-sum-card">
+                    <div>
+                        <div class="quantity-selector">
+                            <button type="button" class="quantity-selector-button" onClick={() => handleQuantityChange(-1)}>-</button>
+                            <input type="number"
+                                min="1"
+                                value={quantity}
+                                onChange={(e) => setQuantity(parseInt(e.target.value))}
 
-                        />
-                        <button type="button" onClick={() => handleQuantityChange(+1)}>+</button>
+                            />
+                            <button type="button" class="quantity-selector-button" onClick={() => handleQuantityChange(+1)}>+</button>
+                        </div>
                     </div>
-                </div>
-                <div class="container">
-                    <h3>Siparişler Toplamı</h3>
-                    <h4>Seçimler: </h4>
-                    <h4>{calculateTotalPrice("additives") + " TL"}</h4>
-                    <h4 >Toplam : </h4>
-                    <h4>{calculateTotalPrice() + " TL"}</h4>
-                </div>
-                <div class="container">
-                    <button type="submit" onClick={handleSubmit}>Sipariş Ver</button>
-                </div></section>
+                    <div class="order-price-card">
+                        <h3 style={{fontWeight:"bold",fontSize:"30px"}}>Siparişler Toplamı</h3>
+                        <div id="row-sum-card" class="price-item">
+                            <div>
+                                <h5 style={{ fontWeight: "bold", fontSize: "25px" }}>Seçimler: </h5>
+                                <h5 style={{ fontWeight: "bold", fontSize: "20px" }} >{calculateTotalPrice("additives")} TL</h5>
+                            </div>
+                            <div>
+                                <h5 style={{ fontWeight: "bold", fontSize: "25px", color: "red" }}>Toplam : </h5>
+                                <h5 style={{ fontWeight: "bold", fontSize: "20px", color: "red" }}>{calculateTotalPrice()} TL</h5>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="submit-button">
+                            <button type="submit" onClick={handleSubmit} class="full-width-button">Sipariş Ver</button>
+                        </div>
+                    </div>
+
+                </section>
+            </section>
         </form>)
 }
